@@ -1,29 +1,47 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
+import 'package:flutter_pipeline_demo/config/env.dart';
 import 'package:flutter_pipeline_demo/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (tester) async {
-    // Build our app and trigger a frame.
+  setUp(() {
+    Env.init(apiUrl: 'https://test-api.example.com', flavorName: 'Test');
+  });
+
+  testWidgets('Counter starts at 0 and increments on tap', (tester) async {
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.text('Count: 0'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
     await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Count: 1'), findsOneWidget);
+  });
+
+  testWidgets('Reset button sets counter back to 0', (tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
+    expect(find.text('Count: 2'), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pump();
+
+    expect(find.text('Count: 0'), findsOneWidget);
+  });
+
+  testWidgets('Theme toggle button exists and is tappable', (tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    expect(find.byIcon(Icons.brightness_6), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.brightness_6));
+    await tester.pump();
+
+    expect(find.byIcon(Icons.brightness_6), findsOneWidget);
   });
 }
