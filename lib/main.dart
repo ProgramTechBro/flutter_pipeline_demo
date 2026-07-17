@@ -5,19 +5,32 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _isDark = false;
+
+  void _toggleTheme() {
+    setState(() => _isDark = !_isDark);
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const CounterPage(),
+      theme: _isDark ? ThemeData.dark() : ThemeData.light(),
+      home: CounterPage(onToggleTheme: _toggleTheme),
     );
   }
 }
 
 class CounterPage extends StatefulWidget {
-  const CounterPage({super.key});
+  final VoidCallback onToggleTheme;
+  const CounterPage({super.key, required this.onToggleTheme});
 
   @override
   State<CounterPage> createState() => _CounterPageState();
@@ -36,7 +49,15 @@ class _CounterPageState extends State<CounterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(Env.flavorName)),
+      appBar: AppBar(
+        title: Text(Env.flavorName),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: widget.onToggleTheme,
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
