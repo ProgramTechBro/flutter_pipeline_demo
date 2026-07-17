@@ -1,8 +1,37 @@
+# default_platform(:android)
+#
+# platform :android do
+#   desc "Build a debug APK for the dev flavor"
+#   lane :beta do
+#     gradle(task: "assembleDevDebug")
+#   end
+# end
+
 default_platform(:android)
 
 platform :android do
+  desc "Bump the build number in pubspec.yaml"
+  lane :bump_version do
+    pubspec_path = File.expand_path("../../pubspec.yaml", __dir__)
+    content = File.read(pubspec_path)
+
+    content.match(/version:\s*(\d+\.\d+\.\d+)\+(\d+)/)
+    version_name = $1
+    build_number = $2.to_i
+    new_build_number = build_number + 1
+
+    new_content = content.sub(
+      /version:\s*\d+\.\d+\.\d+\+\d+/,
+      "version: #{version_name}+#{new_build_number}"
+    )
+
+    File.write(pubspec_path, new_content)
+    UI.success("Bumped build number to #{new_build_number}")
+  end
+
   desc "Build a debug APK for the dev flavor"
   lane :beta do
+    bump_version
     gradle(task: "assembleDevDebug")
   end
 end
