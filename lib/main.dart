@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'config/env.dart';
+import 'package:flutter_pipeline_demo/config/env.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
+/// Root widget of the application.
 class MyApp extends StatefulWidget {
+  /// Creates the root app widget.
   const MyApp({super.key});
 
   @override
@@ -28,9 +30,13 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+/// Displays the counter UI along with environment info.
 class CounterPage extends StatefulWidget {
+  /// Creates the counter page.
+  const CounterPage({required this.onToggleTheme, super.key});
+
+  /// Callback invoked when the theme toggle button is pressed.
   final VoidCallback onToggleTheme;
-  const CounterPage({super.key, required this.onToggleTheme});
 
   @override
   State<CounterPage> createState() => _CounterPageState();
@@ -42,6 +48,7 @@ class _CounterPageState extends State<CounterPage> {
   void _increment() {
     setState(() => _count++);
   }
+
   void _reset() {
     setState(() => _count = 0);
   }
@@ -89,6 +96,7 @@ class _CounterPageState extends State<CounterPage> {
     );
   }
 }
+
 // import 'package:flutter/material.dart';
 // import 'config/env.dart';
 //
