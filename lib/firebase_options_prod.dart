@@ -59,5 +59,4 @@ class DefaultFirebaseOptions {
     projectId: 'flutter-pipeline-demo-ba487',
     storageBucket: 'flutter-pipeline-demo-ba487.firebasestorage.app',
   );
-
 }
