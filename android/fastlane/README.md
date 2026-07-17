@@ -31,6 +31,14 @@ Bump the build number in pubspec.yaml
 
 Build a debug APK for the dev flavor
 
+### android release
+
+```sh
+[bundle exec] fastlane android release
+```
+
+Build a signed release APK for the dev flavor
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
