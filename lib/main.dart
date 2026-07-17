@@ -29,6 +29,9 @@ class _CounterPageState extends State<CounterPage> {
   void _increment() {
     setState(() => _count++);
   }
+  void _reset() {
+    setState(() => _count = 0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +48,22 @@ class _CounterPageState extends State<CounterPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _increment,
-        child: const Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'reset',
+            onPressed: _reset,
+            backgroundColor: Colors.red,
+            child: const Icon(Icons.refresh),
+          ),
+          const SizedBox(height: 12),
+          FloatingActionButton(
+            heroTag: 'increment',
+            onPressed: _increment,
+            child: const Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
