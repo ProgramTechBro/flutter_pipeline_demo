@@ -34,4 +34,10 @@ platform :android do
     bump_version
     gradle(task: "assembleDevDebug")
   end
+
+  desc "Build a signed release APK for the dev flavor"
+  lane :release do
+    bump_version
+    gradle(task: "assembleDevRelease")
+  end
 end
