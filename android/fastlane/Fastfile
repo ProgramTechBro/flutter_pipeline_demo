@@ -1,0 +1,8 @@
+default_platform(:android)
+
+platform :android do
+  desc "Build a debug APK for the dev flavor"
+  lane :beta do
+    gradle(task: "assembleDevDebug")
+  end
+end
