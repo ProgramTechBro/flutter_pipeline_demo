@@ -50,7 +50,7 @@ platform :android do
       release_notes: "Automated build from develop branch",
       service_credentials_file: "firebase-service-account.json",
       android_artifact_type: "APK",
-      android_artifact_path: File.expand_path("../app/build/outputs/apk/dev/release/app-dev-release.apk", __dir__)
+      android_artifact_path: File.expand_path("../../build/app/outputs/apk/dev/release/app-dev-release.apk", __dir__)
     )
   end
 end
