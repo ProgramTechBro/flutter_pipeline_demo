@@ -55,9 +55,6 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x android/gradlew
 
-      - name: List APK output files
-        run: find android/app/build/outputs -name "*.apk"
-
       - name: Write Firebase service account file
         run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > android/firebase-service-account.json
 
