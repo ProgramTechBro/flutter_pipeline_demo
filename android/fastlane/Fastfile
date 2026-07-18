@@ -48,7 +48,7 @@ platform :android do
       app: "1:657967720137:android:beb1a980d4cb015f580f18", # your dev Firebase App ID
       groups: "testers",
       release_notes: "Automated build from develop branch",
-      service_credentials_file: "firebase-service-account.json"
+      service_credentials_file: "firebase-service-account.json",
       android_artifact_type: "APK",
       android_artifact_path: "app/build/outputs/apk/dev/release/app-dev-release.apk"
     )
