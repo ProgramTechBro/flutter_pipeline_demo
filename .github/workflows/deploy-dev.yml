@@ -33,8 +33,8 @@ jobs:
       - name: Write Firebase service account file
         run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > android/firebase-service-account.json
 
-      - name: Run Fastlane distribute lane
-        run: cd android && fastlane distribute
+      - name: Install Fastlane
+        run: gem install fastlane -NV
 
       - name: Make gradlew executable
         run: chmod +x android/gradlew
