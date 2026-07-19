@@ -45,12 +45,12 @@ platform :android do
     bump_version
     gradle(task: "assembleDevRelease")
     firebase_app_distribution(
-      app: "1:657967720137:android:beb1a980d4cb015f580f18", # your dev Firebase App ID
+      app: "1:657967720137:android:beb1a980d4cb015f580f18",
       groups: "testers",
       release_notes: "Automated build from develop branch",
       service_credentials_file: "firebase-service-account.json",
       android_artifact_type: "APK",
-      android_artifact_path: "build/app/outputs/apk/dev/release/app-dev-release.apk"
+      android_artifact_path: File.expand_path("../../build/app/outputs/apk/dev/release/app-dev-release.apk", __dir__)
     )
   end
 end
