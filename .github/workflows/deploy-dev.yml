@@ -60,3 +60,17 @@ jobs:
 
       - name: Run Fastlane distribute lane
         run: cd android && fastlane distribute
+
+      - name: Notify Discord on success
+        if: success()
+        run: |
+          curl -H "Content-Type: application/json" \
+          -d '{"content": "✅ Build succeeded and deployed to Firebase App Distribution! Branch: develop"}' \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Notify Discord on failure
+        if: failure()
+        run: |
+          curl -H "Content-Type: application/json" \
+          -d '{"content": "❌ Build failed on develop. Check GitHub Actions for details."}' \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
