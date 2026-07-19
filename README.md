@@ -138,6 +138,19 @@ Phase 2 - CI/CD and Full Automation: In progress
 - Notifications (Slack or Discord)
 - Crash monitoring
 - End-to-end dry run
+
+## CI/CD Secrets
+
+The following secrets are configured in GitHub Actions (Settings > Secrets and variables > Actions):
+
+- FIREBASE_SERVICE_ACCOUNT - Firebase service account JSON for automated uploads
+- KEYSTORE_BASE64 - Base64-encoded Android signing keystore
+- KEYSTORE_PASSWORD - Keystore password
+- KEY_PASSWORD - Signing key password
+- KEY_ALIAS - Signing key alias
+
+None of these values are stored in the repository itself.
+
 ## Notes
  
 This project was built as a learning exercise, documenting real mistakes and fixes along the way rather than a polished, error-free process - including branch mix-ups, environment and keystore path issues, and JDK version conflicts, all resolved and documented as part of the process.
